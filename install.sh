@@ -23,6 +23,10 @@ systemctl restart sshd
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
+# =============== DISABLE IPV6 ===============
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf
+sysctl -p > /dev/null
 
 # ============================
 # 04. Fail2Ban + Firewall
