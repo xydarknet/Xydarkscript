@@ -19,6 +19,11 @@ echo -e "  ░▀▀░░▀░▀░▀░▀░▀▀▀░▀░▀░  SSH 
 sed -i 's|#Banner none|Banner /etc/issue.net|' /etc/ssh/sshd_config
 systemctl restart sshd
 
+# === ✅ ATUR IPTABLES LEGACY (FIX DEBIAN 12) ===
+update-alternatives --set iptables /usr/sbin/iptables-legacy
+update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+
+
 # ============================
 # 04. Fail2Ban + Firewall
 # ============================
