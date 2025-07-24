@@ -1,4 +1,4 @@
-#!/bin/bash
+IZIN=$(curl -s https://raw.githubusercontent.com/xydarknet/Xydarkscript/main/allow | grep "$MYIP")#!/bin/bash
 
 # ◦•●◉✿ FINAL INSTALL SCRIPT by xydark ✿◉●•◦
 # Telegram: t.me/xydark
@@ -14,9 +14,9 @@ GREEN="\e[92m" YELLOW="\e[93m" RED="\e[91m" NC="\e[0m"
 # ============================
 echo -e "${GREEN}Cek izin IP server...${NC}"
 MYIP=$(curl -s ipv4.icanhazip.com)
-IZIN=$(curl -s https://raw.githubusercontent.com/xydarknet/izin/main/allow | grep "$MYIP")
+IZIN=$(curl -s https://raw.githubusercontent.com/xydarknet/Xydarkscript/main/allow | grep "$MYIP")
 
-if [[ $MYIP == "$IZIN" ]]; then
+if [[ "$MYIP" == "$IZIN" ]]; then
     echo -e "${YELLOW}Akses Diterima untuk IP: $MYIP${NC}"
 else
     echo -e "${RED}IP $MYIP tidak diizinkan. Silakan minta izin ke t.me/xydark.${NC}"
