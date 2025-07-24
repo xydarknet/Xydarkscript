@@ -29,6 +29,31 @@ echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf
 sysctl -p > /dev/null
 
 # ============================
+# 08b. Setup Domain (Manual / Random)
+# ============================
+echo -e "${GREEN}Setup Domain Server...${NC}"
+read -rp "Masukkan domain Anda (kosongkan untuk random): " host_input
+
+if [[ -z $host_input ]]; then
+    # Generate subdomain random dari xydark.my.id
+    sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
+    domain="$sub.xydark.my.id"
+    echo -e "${YELLOW}Domain kosong, menggunakan domain otomatis: $domain${NC}"
+else
+    domain="$host_input"
+    echo -e "${YELLOW}Menggunakan domain Anda: $domain${NC}"
+fi
+
+# Simpan ke file domain
+echo "$domain" > /etc/xray/domain
+
+# Opsional: Hostname VPS
+hostnamectl set-hostname "$domain"
+
+# Tampilkan hasil
+echo -e "${GREEN}Domain tersimpan di /etc/xray/domain${NC}"
+
+# ============================
 # 04. Fail2Ban + Firewall
 # ============================
 echo -e "${GREEN}Installing Fail2Ban & UFW...${NC}"
