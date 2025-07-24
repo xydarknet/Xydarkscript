@@ -1,7 +1,12 @@
 #!/bin/bash
 # Update semua script dari repo utama
 
-cd /usr/bin/xray || exit 1
+if [ ! -d /usr/bin/xray ]; then
+  echo "/usr/bin/xray tidak ditemukan, membuat folder..."
+  mkdir -p /usr/bin/xray
+fi
+
+cd /usr/bin/xray || { echo "Gagal masuk ke /usr/bin/xray"; exit 1; }
 
 echo "Update script dari repo Xydarkscript..."
 wget -q -O menu-xray.sh https://raw.githubusercontent.com/xydarknet/Xydarkscript/main/xray/menu-xray.sh
